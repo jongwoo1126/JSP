@@ -1,0 +1,17 @@
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>forwardProc</title>
+	</head>
+	<body>
+		<h3>포워드 페이지</h3>
+		<%
+			pageContext.forward("../Sub1/Hello.jsp");
+			
+			// 내부 서버 페이지간의 요청이기 때문에 외부서버 요청 불가
+			//pageContext.forward("https://www.naver.com");
+		%>
+	</body>
+</html>
