@@ -3,9 +3,14 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Insert title here</title>
+		<title>P163</title>
 	</head>
 	<body>
-	
+		<h2>config 내장객체</h2>
+		<%
+			String name = config.getServletName();
+		%>
+		
+		현재 페이지의 서블릿 객체 : <%= name %>
 	</body>
 </html>

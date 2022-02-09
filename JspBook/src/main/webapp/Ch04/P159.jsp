@@ -3,9 +3,17 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Insert title here</title>
+		<title>P159</title>
 	</head>
 	<body>
-	
-	</body>
+		<% 
+			request.setCharacterEncoding("utf-8");
+			String id = request.getParameter("id");
+			String pass = request.getParameter("pass");
+			
+			if(id.equals("kingdora") && pass.equals("1234"))
+				session.setAttribute("id", id);
+			
+			response.sendRedirect("P157.jsp");
+		%>
 </html>

@@ -3,9 +3,16 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Insert title here</title>
+		<title>P162</title>
 	</head>
 	<body>
-	
+		<%
+			String info = application.getServerInfo();
+			String path = application.getRealPath("/");
+			application.log("로그 기록: ");
+		%>
+		
+		웹 컨테이너의 이름과 버전 : <%= info %><p>
+		웹 애플리케이션 폴더의 로컬 시스템 경로 : <%= path %></p>
 	</body>
 </html>

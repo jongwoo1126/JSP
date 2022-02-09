@@ -3,9 +3,11 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Insert title here</title>
+		<title>P164</title>
 	</head>
 	<body>
-	
+		<% String info = this.getServletInfo(); %>
+		<h2>page 내장객체 예제</h2>
+		page 디렉티브의 info 속성값 "<%= info %>"을 얻어낸다.
 	</body>
 </html>
