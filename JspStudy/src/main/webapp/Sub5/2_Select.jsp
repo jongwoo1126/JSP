@@ -44,7 +44,6 @@
 		}
 		
 		// 6단계
-		stmt.close();
 		conn.close();
 	
 	}catch(Exception e){
@@ -77,8 +76,8 @@
 				<th><%= ub.getHp() %></th>
 				<th><%= ub.getAge() %></th>
 				<td>
-					<a href=#>삭제</a>
-					<a href=./3_Update.jsp?uid=<%= ub.getUid() %>>수정</a>
+					<a href="./4_Delete.jsp?uid=<%= ub.getUid() %>">삭제</a>
+					<a href="./3_Update.jsp?uid=<%= ub.getUid() %>">수정</a>
 				</td>
 			</tr>
 			<% } %>
