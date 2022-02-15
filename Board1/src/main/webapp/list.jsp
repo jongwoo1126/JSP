@@ -1,7 +1,13 @@
 <%@page import="kr.co.board1.bean.UserBean"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-	UserBean sessuser = (UserBean)session.getAttribute("sessUser");
+	UserBean sessUser = (UserBean)session.getAttribute("sessUser");
+	
+	// 로그인하지 않고 글목록 요청하면 로그인 페이지로 이동
+	if(sessUser == null){
+		response.sendRedirect("/Board1/user/login.jsp?success=102");
+		return;
+	}
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,8 +22,8 @@
             <h3>글목록</h3>
             <article>
                 <p>
-                    <%= sessuser.getNick() %>>님 반갑습니다.
-                    <a href="/Board/user/login.jsp" class="logout">[로그아웃]</a>
+                    <%= sessUser.getNick() %>님 반갑습니다.
+                    <a href="/Board1/user/proc/logout.jsp" class="logout">[로그아웃]</a>
                 </p>
                 <table border="0">
                     <tr>

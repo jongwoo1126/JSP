@@ -1,3 +1,5 @@
+<%@page import="kr.co.board1.db.Sql"%>
+<%@page import="kr.co.board1.db.DBConfig"%>
 <%@page import="kr.co.board1.bean.TermsBean"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
@@ -6,17 +8,13 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	// 약관내용 가져오기
-	String host = "jdbc:mysql://3.34.94.228:3306/lucky4527";
-	String user = "test";
-	String pass = "1234";
 	
 	TermsBean tb = null;
 	
 	try{
-		Class.forName("com.mysql.jdbc.Driver");
-		Connection conn = DriverManager.getConnection(host, user, pass);
+		Connection conn = DBConfig.getInstance().getConnection();
 		Statement stmt = conn.createStatement();
-		ResultSet rs = stmt.executeQuery("SELECT * FROM `Board_terms`");
+		ResultSet rs = stmt.executeQuery(Sql.SELECT_TERMS);
 		
 		if(rs.next()){
 			
