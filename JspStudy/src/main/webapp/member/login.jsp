@@ -2,7 +2,7 @@
 <%
 	// 전송 데이터 수신
 	request.setCharacterEncoding("utf-8");
-	String succes = request.getParameter("success");
+	String success = request.getParameter("success");
 %>
 <!DOCTYPE html>
 <html>
@@ -10,7 +10,7 @@
 		<meta charset="UTF-8"/>
 		<title>login</title>
 		<script>
-			let success = "<%= succes %>";
+			let success = "<%= success %>";
 			
 			if(success == "100"){
 				alert('로그인에 실패했습니다. 다시 한번 확인 바랍니다.');

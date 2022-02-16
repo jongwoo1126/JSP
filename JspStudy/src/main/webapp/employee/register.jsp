@@ -62,8 +62,7 @@
 					<td colspan="2" align="right">
 						<input type="submit" value="등록"/>
 					</td>
-				</tr>		
-				</tr>			
+				</tr>					
 			</table>		
 		</form>
 		
