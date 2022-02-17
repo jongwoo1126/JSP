@@ -6,7 +6,7 @@
     <title>회원가입</title>
     <link rel="stylesheet" href="../css/style.css"/>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<script src="/Board1/js/zipcode.js"></script>
+		<script src="/Board1/js/zipcode.js"></script>
 </head>
 <body>
     <div id="wrapper">
