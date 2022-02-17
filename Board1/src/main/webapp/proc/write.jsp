@@ -27,7 +27,7 @@
 	String uid= mr.getParameter("uid");
 	String regip = request.getRemoteAddr();
 	
-	// 작성한 글 입력하기
+	// 작성한 글 입력하기 
 	ArticleBean article = new ArticleBean();
 	article.setTitle(title);
 	article.setContent(content);
