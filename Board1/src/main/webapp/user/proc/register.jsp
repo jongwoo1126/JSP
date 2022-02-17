@@ -4,14 +4,7 @@
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8"/>
-		<title>Insert title here</title>
-	</head>
-	<body>
-	<%
+<%
 	// 전송 데이터 수신
 	request.setCharacterEncoding("utf-8");
 	
@@ -55,6 +48,4 @@
 	
 	response.sendRedirect("/Board1/user/login.jsp?success=200");
 	
-	%>
-	</body>
-</html>
+%>
