@@ -24,7 +24,7 @@
 	String pg = request.getParameter("pg");
 	
 	// 페이지 번호 작업
-	int total = ArticleDao.getInstance().selectCountID();
+	int total = ArticleDao.getInstance().selectCountId();
 	int lastPageNum = 0;
 	
 	if(total % 10 == 0){
@@ -52,6 +52,7 @@
 	
 	// 글 목록 가져오기
 	List<ArticleBean> articles = ArticleDao.getInstance().selectArticles(start);
+	
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -80,7 +81,7 @@
                     <% for(ArticleBean article : articles){ %>
                     <tr>
                         <td><%= pageStartNum-- %></td>
-                        <td><a href="./view.jsp"><%= article.getTitle() %></a>&nbsp;[<%= article.getComment() %>]</td>
+                        <td><a href="/Board1/view.jsp?id= <%= article.getId() %>"><%= article.getTitle() %></a>&nbsp;[<%= article.getComment() %>]</td>
                         <td><%= article.getNick() %></td>
                         <td><%= article.getRdate().substring(2, 10) %></td>
                         <td><%= article.getHit() %></td>
