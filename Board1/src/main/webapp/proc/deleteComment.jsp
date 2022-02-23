@@ -1,4 +1,4 @@
-<%@page import="kr.co.board1.db.ArticleDao"%>
+<%@page import="kr.co.board1.dao.ArticleDao"%>
 <%@page import="java.sql.Connection"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%
