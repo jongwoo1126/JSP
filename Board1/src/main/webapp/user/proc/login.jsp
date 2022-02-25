@@ -1,3 +1,4 @@
+<%@page import="kr.co.board1.log.Mylog"%>
 <%@page import="kr.co.board1.db.Sql"%>
 <%@page import="kr.co.board1.db.DBConfig"%>
 <%@page import="java.sql.PreparedStatement"%>
@@ -13,7 +14,7 @@
 	String pass = request.getParameter("pass");
 	
 	// 데이터베이스 처리
-	
+	Mylog.getInstance().info("login...");
 	try{
 		Connection conn = DBConfig.getInstance().getConnection();
 				
@@ -54,6 +55,7 @@
 		
 	}catch(Exception e){
 		e.printStackTrace();
+		Mylog.getInstance().error(e.getMessage());
 	}
 	
 	

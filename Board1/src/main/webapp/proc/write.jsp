@@ -1,3 +1,4 @@
+<%@page import="kr.co.board1.log.Mylog"%>
 <%@page import="kr.co.board1.bean.ArticleBean"%>
 <%@page import="kr.co.board1.dao.ArticleDao"%>
 <%@page import="java.sql.ResultSet"%>
@@ -26,6 +27,8 @@
 	String fname = mr.getFilesystemName("fname");
 	String uid= mr.getParameter("uid");
 	String regip = request.getRemoteAddr();
+	
+	Mylog.getInstance().info("write title : "+title);
 	
 	// 작성한 글 입력하기 
 	ArticleBean article = new ArticleBean();

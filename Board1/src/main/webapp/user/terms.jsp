@@ -1,3 +1,4 @@
+<%@page import="kr.co.board1.log.Mylog"%>
 <%@page import="kr.co.board1.db.Sql"%>
 <%@page import="kr.co.board1.db.DBConfig"%>
 <%@page import="kr.co.board1.bean.TermsBean"%>
@@ -28,6 +29,7 @@
 		
 	}catch(Exception e){
 		e.printStackTrace();
+		Mylog.getInstance().error(e.getMessage());
 	}
 
 %>

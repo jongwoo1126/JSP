@@ -1,3 +1,4 @@
+<%@page import="kr.co.board1.log.Mylog"%>
 <%@page import="java.io.BufferedOutputStream"%>
 <%@page import="java.io.FileInputStream"%>
 <%@page import="java.io.BufferedInputStream"%>
@@ -9,6 +10,8 @@
 <%
 	request.setCharacterEncoding("utf-8");
 	String fid = request.getParameter("fid");
+	
+	Mylog.getInstance().info("download file id"+fid);
 	
 	// 파일정보 가져오기
 	ArticleDao dao = ArticleDao.getInstance();

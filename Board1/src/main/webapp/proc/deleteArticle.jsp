@@ -1,3 +1,4 @@
+<%@page import="kr.co.board1.log.Mylog"%>
 <%@page import="kr.co.board1.dao.ArticleDao"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%
@@ -12,5 +13,7 @@
 	
 	// 리다이렉트
 	response.sendRedirect("/Board1/list.jsp");
-
+	
+	
+	Mylog.getInstance().info("delete article...");
 %>

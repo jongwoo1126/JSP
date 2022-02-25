@@ -1,3 +1,4 @@
+<%@page import="kr.co.board1.log.Mylog"%>
 <%@page import="kr.co.board1.bean.ArticleBean"%>
 <%@page import="kr.co.board1.dao.ArticleDao"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
@@ -23,4 +24,7 @@
 	
 	// 리다이렉트
 	response.sendRedirect("/Board1/view.jsp?id="+id);
+	
+	
+	Mylog.getInstance().info("comment : "+article.getComment());
 %>

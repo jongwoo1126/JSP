@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import kr.co.board1.log.Mylog;
+
 public class DBConfig {
 	
 	// 싱글톤 객체
@@ -15,15 +17,19 @@ public class DBConfig {
 	
 	private DBConfig() {}
 	
-	// 개발용
+	/* 개발용
+		private final String HOST = "jdbc:mysql://3.34.94.228:3306/lucky4527";
+		private final String USER = "test";
+		private final String PASS = "1234";
+	*/
+	/* 배포용
+		private final String HOST = "jdbc:mysql://localhost:3306/lucky4527";
+		private final String USER = "test";
+		private final String PASS = "1234";
+	*/
 	private final String HOST = "jdbc:mysql://3.34.94.228:3306/lucky4527";
 	private final String USER = "test";
-	private final String PASS = "1234";
-	
-	// 배포용
-	//private final String HOST = "jdbc:mysql://localhost:3306/lucky4527";
-	//private final String USER = "test";
-	//private final String PASS = "1234";
+	private final String PASS = "1234";	
 	
 	public Connection getConnection() throws ClassNotFoundException, SQLException {
 	
@@ -33,5 +39,6 @@ public class DBConfig {
 		Connection conn = DriverManager.getConnection(HOST, USER, PASS);
 		
 		return conn;
+		
 	}
 }

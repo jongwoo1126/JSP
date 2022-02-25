@@ -1,3 +1,4 @@
+<%@page import="kr.co.board1.log.Mylog"%>
 <%@page import="kr.co.board1.db.Sql"%>
 <%@page import="kr.co.board1.db.DBConfig"%>
 <%@page import="java.sql.PreparedStatement"%>
@@ -44,6 +45,7 @@
 		
 	}catch(Exception e){
 		e.printStackTrace();
+		Mylog.getInstance().error(e.getMessage());
 	}
 	
 	response.sendRedirect("/Board1/user/login.jsp?success=200");
