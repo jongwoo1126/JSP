@@ -1,8 +1,11 @@
+<%@page import="kr.co.board1.log.Mylog"%>
+<%@page import="org.apache.log4j.Logger"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	request.setCharacterEncoding("utf-8");
 	String success = request.getParameter("success");	
 	
+	Mylog.getInstance().info("login page : "+success);
 %>
 <!DOCTYPE html>
 <html lang="en">

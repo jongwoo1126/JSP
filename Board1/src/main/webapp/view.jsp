@@ -34,6 +34,20 @@
     <script>
      	$(function() {
 			
+     	// 게시글 삭제
+     		$('.btnDelete').click(function() {
+				
+     			let isOk = confirm('정말 삭제 하시겠습니까?');
+     			
+     			if(isOk){
+     				return true;
+     			}else{
+     				return false;	
+     			}
+     			
+     			
+			});
+     		
      		// 댓글 삭제
      		$('.commentDelete').click(function() {
 				
@@ -127,8 +141,8 @@
                 </tr>
             </table>
             <div>
-                <a href="#" class="btnDelete">삭제</a>
-                <a href="/Board1/modify.jsp" class="btnModify">수정</a>
+                <a href="/Board1/proc/deleteArticle.jsp?id=<%= article.getId() %>" class="btnDelete">삭제</a>
+                <a href="/Board1/modify.jsp?id=<%= id %>" class="btnModify">수정</a>
                 <a href="/Board1/list.jsp" class="btnList">목록</a>
             </div>  
             

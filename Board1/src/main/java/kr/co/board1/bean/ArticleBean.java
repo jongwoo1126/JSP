@@ -1,5 +1,7 @@
 package kr.co.board1.bean;
 
+import java.util.Set;
+
 public class ArticleBean {
 
 	private int id;
@@ -48,6 +50,7 @@ public class ArticleBean {
 	public void setId(int id) {
 		this.id = id;
 	}
+	
 	public int getParent() {
 		return parent;
 	}

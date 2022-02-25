@@ -11,6 +11,7 @@ import kr.co.board1.bean.ArticleBean;
 import kr.co.board1.bean.FileBean;
 import kr.co.board1.db.DBConfig;
 import kr.co.board1.db.Sql;
+import kr.co.board1.log.Mylog;
 
 public class ArticleDao {
 	
@@ -40,7 +41,7 @@ public class ArticleDao {
 	}
 	
 	public int insertArticle(ArticleBean article) {
-		
+		Mylog.getInstance().info("insertArticles...");
 		try{
 			Connection conn = DBConfig.getInstance().getConnection();
 			
@@ -57,6 +58,7 @@ public class ArticleDao {
 			
 		}catch(Exception e){
 			e.printStackTrace();
+			Mylog.getInstance().error(e.getMessage());
 		}
 		
 		// 방금 INSERT한 글 번호 조회
@@ -320,7 +322,22 @@ public class ArticleDao {
 		}		
 	}
 	
-	public void updateArticle() {}
+	public void updateArticle(String title, String content, String id) {
+		
+		try {
+			Connection conn = DBConfig.getInstance().getConnection();
+			PreparedStatement psmt = conn.prepareStatement(Sql.UPDATE_ARTICLE);
+			psmt.setString(1, title);
+			psmt.setString(2, content);
+			psmt.setString(3, id);
+			
+			psmt.executeUpdate();
+			
+			conn.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	public int updateComment(String content, String id) {
 		
@@ -341,10 +358,25 @@ public class ArticleDao {
 		return result;
 	}
 	
-	public void deleteArticle() {}
+	public void deleteArticle(String id) {
+	
+		try {
+			Connection conn = DBConfig.getInstance().getConnection();
+			PreparedStatement psmt = conn.prepareStatement(Sql.DELETE_ARTICLE);
+			
+			psmt.setString(1, id);
+			psmt.executeUpdate();
+		
+			conn.close();
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
 	
 	public void deleteComment(String id) {
-		// 댓글 삭제하고 바로 원글 댓글 카운트 -1 수행
+		
 		try {
 			Connection conn = DBConfig.getInstance().getConnection();
 			PreparedStatement psmt = conn.prepareStatement(Sql.DELETE_COMMENT);
