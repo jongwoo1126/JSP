@@ -3,6 +3,7 @@
 <%
 	request.setCharacterEncoding("utf-8");
 	String cate = request.getParameter("cate");
+	String type = request.getParameter("type");
 	
 	pageContext.include("./inc/_"+cate+".jsp");
 %>
@@ -38,7 +39,7 @@
     </div>
 
     <!-- 글쓰기 버튼 -->
-    <a href="./write.jsp" class="btnWrite">글쓰기</a>
+    <a href="/Farmstory1/board/write.jsp?cate=<%= cate %>&type=<%= type %>" class="btnWrite">글쓰기</a>
 
 </section>
 <!-- 내용 끝 -->
