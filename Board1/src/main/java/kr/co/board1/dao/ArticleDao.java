@@ -24,11 +24,11 @@ public class ArticleDao {
 	private ArticleDao() {}
 	
 	// CRUD 메서드 정의
-	public void insertFile(int id, String fname, String newName) {
+	public void insertFile(int no, String fname, String newName) {
 		try{
 			Connection conn = DBConfig.getInstance().getConnection();
 			PreparedStatement psmt = conn.prepareStatement(Sql.INSERT_FILE);
-			psmt.setInt(1, id);
+			psmt.setInt(1, no);
 			psmt.setString(2, fname);
 			psmt.setString(3, newName);
 			psmt.executeUpdate();
@@ -89,7 +89,7 @@ public class ArticleDao {
 	
 	public int selectMaxId() {
 		
-		int id = 0;
+		int no = 0;
 		
 		try {
 			Connection conn = DBConfig.getInstance().getConnection();
@@ -97,14 +97,14 @@ public class ArticleDao {
 			ResultSet rs = stmt.executeQuery(Sql.SELECT_MAX_ID);
 			
 			if(rs.next()){
-				id = rs.getInt(1);
+				no= rs.getInt(1);
 			}
 			
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return id;
+		return no;
 	}
 	
 	public int selectCountId() {
@@ -157,22 +157,22 @@ public class ArticleDao {
 		return fb;
 	}
 	
-	public ArticleBean selectArticle(String id) {
+	public ArticleBean selectArticle(String no) {
 		
 		ArticleBean article = null;
 		
 		try {
 			Connection conn = DBConfig.getInstance().getConnection();
 			PreparedStatement psmt = conn.prepareStatement(Sql.SELECT_ARTICLE);
-			psmt.setString(1, id);
+			psmt.setString(1, no);
 
 			ResultSet rs = psmt.executeQuery();
 			if(rs.next()) {
 				article = new ArticleBean();
-				article.setId(rs.getInt(1));
+				article.setNo(rs.getInt(1));
 				article.setParent(rs.getInt(2));
 				article.setComment(rs.getInt(3));
-				article.setCate(rs.getString(4));
+				article.setType(rs.getString(4));
 				article.setTitle(rs.getString(5));
 				article.setContent(rs.getString(6));
 				article.setFile(rs.getInt(7));
@@ -214,10 +214,10 @@ public class ArticleDao {
 			
 			while(rs.next()){
 				ArticleBean article = new ArticleBean();
-				article.setId(rs.getInt(1));
+				article.setNo(rs.getInt(1));
 				article.setParent(rs.getInt(2));
 				article.setComment(rs.getInt(3));
-				article.setCate(rs.getString(4));
+				article.setType(rs.getString(4));
 				article.setTitle(rs.getString(5));
 				article.setContent(rs.getString(6));
 				article.setFile(rs.getInt(7));
@@ -252,7 +252,7 @@ public class ArticleDao {
 			
 			while(rs.next()) {
 				ArticleBean comment = new ArticleBean();
-				comment.setId(rs.getInt(1));
+				comment.setNo(rs.getInt(1));
 				comment.setParent(rs.getInt(2));
 				comment.setContent(rs.getString(6));
 				comment.setUid(rs.getString(9));
@@ -286,11 +286,11 @@ public class ArticleDao {
 		}		
 	}
 	
-	public void updateArticleHit(int id) {
+	public void updateArticleHit(int no) {
 		try {
 			Connection conn = DBConfig.getInstance().getConnection();
 			PreparedStatement psmt = conn.prepareStatement(Sql.UPDATE_ARTICLE_HIT);
-			psmt.setInt(1, id);
+			psmt.setInt(1, no);
 			
 			psmt.executeUpdate();
 			conn.close();
@@ -300,7 +300,7 @@ public class ArticleDao {
 		}		
 	}
 	
-	public void updateArticleComment(String id, boolean isplus) {
+	public void updateArticleComment(String no, boolean isplus) {
 		try {
 			Connection conn = DBConfig.getInstance().getConnection();
 			
@@ -312,7 +312,7 @@ public class ArticleDao {
 				psmt = conn.prepareStatement(Sql.UPDATE_ARTICLE_COMMENT_MINUS);
 			}
 			
-			psmt.setString(1, id);
+			psmt.setString(1, no);
 			
 			psmt.executeUpdate();
 			conn.close();
@@ -322,14 +322,14 @@ public class ArticleDao {
 		}		
 	}
 	
-	public void updateArticle(String title, String content, String id) {
+	public void updateArticle(String title, String content, String no) {
 		
 		try {
 			Connection conn = DBConfig.getInstance().getConnection();
 			PreparedStatement psmt = conn.prepareStatement(Sql.UPDATE_ARTICLE);
 			psmt.setString(1, title);
 			psmt.setString(2, content);
-			psmt.setString(3, id);
+			psmt.setString(3, no);
 			
 			psmt.executeUpdate();
 			
@@ -339,7 +339,7 @@ public class ArticleDao {
 		}
 	}
 	
-	public int updateComment(String content, String id) {
+	public int updateComment(String content, String no) {
 		
 		int result = 0;
 		
@@ -347,7 +347,7 @@ public class ArticleDao {
 			Connection conn = DBConfig.getInstance().getConnection();
 			PreparedStatement psmt = conn.prepareStatement(Sql.UPDATE_COMMENT);
 			psmt.setString(1, content);
-			psmt.setString(2, id);
+			psmt.setString(2, no);
 			result = psmt.executeUpdate();
 	
 			conn.close();
@@ -358,13 +358,13 @@ public class ArticleDao {
 		return result;
 	}
 	
-	public void deleteArticle(String id) {
+	public void deleteArticle(String no) {
 	
 		try {
 			Connection conn = DBConfig.getInstance().getConnection();
 			PreparedStatement psmt = conn.prepareStatement(Sql.DELETE_ARTICLE);
 			
-			psmt.setString(1, id);
+			psmt.setString(1, no);
 			psmt.executeUpdate();
 		
 			conn.close();
@@ -375,12 +375,12 @@ public class ArticleDao {
 		
 	}
 	
-	public void deleteComment(String id) {
+	public void deleteComment(String no) {
 		
 		try {
 			Connection conn = DBConfig.getInstance().getConnection();
 			PreparedStatement psmt = conn.prepareStatement(Sql.DELETE_COMMENT);
-			psmt.setString(1, id);
+			psmt.setString(1, no);
 			psmt.executeUpdate();
 			
 			conn.close();

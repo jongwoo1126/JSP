@@ -1,5 +1,4 @@
 <%@page import="kr.co.board1.log.Mylog"%>
-<%@page import="kr.co.board1.bean.ArticleBean"%>
 <%@page import="kr.co.board1.dao.ArticleDao"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="kr.co.board1.db.DBConfig"%>
@@ -10,14 +9,14 @@
 	
 	String title = request.getParameter("title");
 	String content = request.getParameter("content");
-	String id = request.getParameter("id");
+	String no = request.getParameter("no");
 	
 	// Update
 	ArticleDao dao = ArticleDao.getInstance();
-	dao.updateArticle(title, content, id);
+	dao.updateArticle(title, content, no);
 		
 	// 리다이렉트
-	response.sendRedirect("/Board1/view.jsp?id="+id);
+	response.sendRedirect("/Board1/view.jsp?no="+no);
 	
 	Mylog.getInstance().info("modify title : "+title);
 %>

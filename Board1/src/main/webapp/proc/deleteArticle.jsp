@@ -4,12 +4,12 @@
 <%
 	//삭제 글 번호 수신
 	request.setCharacterEncoding("utf-8");
-	String id = request.getParameter("id");
+	String no = request.getParameter("no");
 	
 	ArticleDao dao = ArticleDao.getInstance();
 
 	// 게시글 삭제 
-	dao.deleteArticle(id);
+	dao.deleteArticle(no);
 	
 	// 리다이렉트
 	response.sendRedirect("/Board1/list.jsp");

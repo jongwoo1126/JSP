@@ -1,10 +1,10 @@
+<%@page import="kr.co.board1.bean.FileBean"%>
 <%@page import="kr.co.board1.log.Mylog"%>
 <%@page import="java.io.BufferedOutputStream"%>
 <%@page import="java.io.FileInputStream"%>
 <%@page import="java.io.BufferedInputStream"%>
 <%@page import="java.io.File"%>
 <%@page import="java.net.URLEncoder"%>
-<%@page import="kr.co.board1.bean.FileBean"%>
 <%@page import="kr.co.board1.dao.ArticleDao"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%

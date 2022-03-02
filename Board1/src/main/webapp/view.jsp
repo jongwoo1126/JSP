@@ -1,6 +1,6 @@
-<%@page import="java.util.List"%>
-<%@page import="kr.co.board1.bean.UserBean"%>
 <%@page import="kr.co.board1.bean.ArticleBean"%>
+<%@page import="kr.co.board1.bean.UserBean"%>
+<%@page import="java.util.List"%>
 <%@page import="kr.co.board1.dao.ArticleDao"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%
@@ -12,17 +12,17 @@
 		return; // <-- 프로그램 실행 여기까지
 	}
 	request.setCharacterEncoding("utf-8");
-	String id = request.getParameter("id");
+	String no = request.getParameter("no");
 	
 	// 글 가져오기
 	ArticleDao dao = ArticleDao.getInstance();
-	ArticleBean article = dao.selectArticle(id);
+	ArticleBean article = dao.selectArticle(no);
 	
 	// 조회수 +1
-	dao.updateArticleHit(article.getId());
+	dao.updateArticleHit(article.getNo());
 	
 	// 댓글 가져오기
-	List<ArticleBean> comments = dao.selectComments(id);
+	List<ArticleBean> comments = dao.selectComments(no);
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -84,9 +84,9 @@
 				let textarea = tag.parent().prev();
      			
      			let content = textarea.val();
-     			let id = tag.attr('data-id');
+     			let no = tag.attr('data-id');
      			
-     			let jsonData = {"content": content, "id": id};
+     			let jsonData = {"content": content, "no": no};
      			
      			console.log(jsonData);
      			
@@ -141,8 +141,8 @@
                 </tr>
             </table>
             <div>
-                <a href="/Board1/proc/deleteArticle.jsp?id=<%= article.getId() %>" class="btnDelete">삭제</a>
-                <a href="/Board1/modify.jsp?id=<%= id %>" class="btnModify">수정</a>
+                <a href="/Board1/proc/deleteArticle.jsp?no=<%= article.getNo() %>" class="btnDelete">삭제</a>
+                <a href="/Board1/modify.jsp?no=<%= no %>" class="btnModify">수정</a>
                 <a href="/Board1/list.jsp" class="btnList">목록</a>
             </div>  
             
@@ -160,9 +160,9 @@
                     
                     <% if(sessUser.getUid().equals(comment.getUid())){ %>
                     <div>
-                        <a class="commentDelete" href="/Board1/proc/deleteComment.jsp?id=<%= comment.getId() %> &parent=<%= comment.getParent() %>">삭제</a>
+                        <a class="commentDelete" href="/Board1/proc/deleteComment.jsp?no=<%= comment.getNo() %> &parent=<%= comment.getParent() %>">삭제</a>
                         <a href="#" class="commentModify">수정</a>
-                        <a href="#" data-id="<%= comment.getId() %>" class="commentModifyComplete">수정완료</a>
+                        <a href="#" data-id="<%= comment.getNo() %>" class="commentModifyComplete">수정완료</a>
                     </div>
                     <% } %>
                 </article>
@@ -179,7 +179,7 @@
             <section class="commentForm">
                 <h3>댓글쓰기</h3>
                 <form action="/Board1/proc/comment.jsp" method="post">
-                	<input type="hidden" name="id"  value="<%= article.getId() %>"/>
+                	<input type="hidden" name="no"  value="<%= article.getNo() %>"/>
                 	<input type="hidden" name="uid" value="<%= sessUser.getUid() %>"/>
                     <textarea name="comment"></textarea>
                     <div>

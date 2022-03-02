@@ -1,7 +1,7 @@
-<%@page import="com.mysql.fabric.proto.xmlrpc.ResultSetParser"%>
 <%@page import="kr.co.board1.bean.ArticleBean"%>
-<%@page import="kr.co.board1.dao.ArticleDao"%>
 <%@page import="kr.co.board1.bean.UserBean"%>
+<%@page import="com.mysql.fabric.proto.xmlrpc.ResultSetParser"%>
+<%@page import="kr.co.board1.dao.ArticleDao"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	UserBean sessUser = (UserBean) session.getAttribute("sessUser");
@@ -14,10 +14,10 @@
 	
 	request.setCharacterEncoding("utf-8");
 	
-	String id = request.getParameter("id");
+	String no = request.getParameter("no");
 
 	// 글 가져오기
-	ArticleBean article = ArticleDao.getInstance().selectArticle(id);
+	ArticleBean article = ArticleDao.getInstance().selectArticle(no);
 
 %>
 <!DOCTYPE html>
@@ -33,7 +33,7 @@
             <h3>글수정</h3>
             <article>
                 <form action="/Board1/proc/modify.jsp" method="post">
-                	<input type="hidden" name="id" value="<%= article.getId() %>"/>
+                	<input type="hidden" name="no" value="<%= article.getNo() %>"/>
                     <table>
                         <tr>
                             <td>제목</td>
@@ -51,7 +51,7 @@
                         </tr>
                     </table>
                     <div>
-                        <a href="/Board1/view.jsp?id=<%= id %>" class="btnCancel">취소</a>
+                        <a href="/Board1/view.jsp?no=<%= no %>" class="btnCancel">취소</a>
                         <input type="submit"  class="btnWrite" value="수정완료">
                     </div>
                 </form>

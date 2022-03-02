@@ -4,10 +4,10 @@ import java.util.Set;
 
 public class ArticleBean {
 
-	private int id;
+	private int no;
 	private int parent;
 	private int comment;
-	private String cate;
+	private String type;
 	private String title;
 	private String content;
 	private int file;
@@ -44,11 +44,11 @@ public class ArticleBean {
 	}
 	
 	
-	public int getId() {
-		return id;
+	public int getNo() {
+		return no;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setNo(int no) {
+		this.no = no;
 	}
 	
 	public int getParent() {
@@ -67,11 +67,11 @@ public class ArticleBean {
 	public void setComment(int comment) {
 		this.comment = comment;
 	}
-	public String getCate() {
-		return cate;
+	public String getType() {
+		return type;
 	}
-	public void setCate(String cate) {
-		this.cate = cate;
+	public void setType(String type) {
+		this.type = type;
 	}
 	public String getTitle() {
 		return title;
