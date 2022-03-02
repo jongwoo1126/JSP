@@ -21,7 +21,7 @@
             </tr>
             <tr>
                 <td>1</td>
-                <td><a href="./view.jsp">테스트 제목입니다.</a>&nbsp;[3]</td>
+                <td><a href="/Farmstory1/board/view.jsp?cate=<%= cate %>&type=<%= type %>">테스트 제목입니다.</a>&nbsp;[3]</td>
                 <td>길동이</td>
                 <td>20-05-12</td>
                 <td>12</td>
