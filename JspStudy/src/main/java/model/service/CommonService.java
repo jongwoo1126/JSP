@@ -6,4 +6,6 @@ import javax.servlet.http.HttpServletResponse;
 public interface CommonService {
 	
 	public String businessProc(HttpServletRequest req, HttpServletResponse resp);
+	
+	
 }
