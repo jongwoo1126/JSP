@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <title>약관</title>
-    <link rel="stylesheet" href="/Board2/css/style.css"/>    
+    <link rel="stylesheet" href="/Board2/css/style.css"/>  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="/Board2/js/terms.js"></script>  
 </head>
 <body>
     <div id="wrapper">
