@@ -10,6 +10,7 @@ import java.util.List;
 import kr.co.board2.db.DBConfig;
 import kr.co.board2.db.Sql;
 import kr.co.board2.vo.ArticleVo;
+import kr.co.board2.vo.FileVo;
 
 public class ArticleDao {
 
@@ -43,6 +44,28 @@ public class ArticleDao {
 	
 		
 		return selectMaxNo();
+	}
+	
+	public int insertComment(ArticleVo article) {
+		
+		int result = 0;
+		
+		try {
+			Connection conn = DBConfig.getInstance().getConnection();
+			PreparedStatement psmt = conn.prepareStatement(Sql.INSERT_COMMENT);
+			psmt.setInt(1, article.getParent());
+			psmt.setString(2, article.getContent());
+			psmt.setString(3, article.getUid());
+			psmt.setString(4, article.getRegip());
+			psmt.executeUpdate();
+			
+			conn.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return selectMaxNo();
+		
 	}
 	
 	public void insertFile(int parent, String oName, String nName) {
@@ -105,7 +128,49 @@ public class ArticleDao {
 		
 		return total;
 	}
-	public void selectArticle() {}
+	public ArticleVo selectArticle(String no) {
+		
+		ArticleVo article = null;
+		
+		try {
+			Connection conn = DBConfig.getInstance().getConnection();
+			PreparedStatement psmt = conn.prepareStatement(Sql.SELECT_ARTICLE);
+			psmt.setString(1, no);
+			
+			ResultSet rs = psmt.executeQuery();
+			if(rs.next()) {
+				article = new ArticleVo();
+				article.setNo(rs.getInt(1));
+				article.setParent(rs.getInt(2));
+				article.setComment(rs.getInt(3));
+				article.setType(rs.getString(4));
+				article.setTitle(rs.getString(5));
+				article.setContent(rs.getString(6));
+				article.setFile(rs.getInt(7));
+				article.setHit(rs.getInt(8));
+				article.setUid(rs.getString(9));
+				article.setRegip(rs.getString(10));
+				article.setRdate(rs.getString(11).substring(2, 10));
+				
+				// 파일정보
+				FileVo fv = new FileVo();
+				fv.setFid(rs.getInt(12));
+				fv.setParent(rs.getInt(13));
+				fv.setoName(rs.getString(14));
+				fv.setnName(rs.getString(15));
+				fv.setDownload(rs.getInt(16));
+				fv.setRdate(rs.getString(17));
+									
+				article.setFv(fv);
+			}
+			conn.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return article;
+	}
+	
 	public List<ArticleVo> selectArticles(int start) {
 		
 		List<ArticleVo> articles = new ArrayList<>();
@@ -136,12 +201,83 @@ public class ArticleDao {
 			
 			conn.close();
 			
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return articles;
 	}
+	
+	public List<ArticleVo> selectComments(String parent){
+		
+		List<ArticleVo> comments = new ArrayList<>();
+		
+		try {
+			
+			Connection conn = DBConfig.getInstance().getConnection();
+			PreparedStatement psmt = conn.prepareStatement(Sql.SELECT_COMMENTS);
+			psmt.setString(1, parent);
+			ResultSet rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				ArticleVo comment = new ArticleVo();
+				comment.setNo(rs.getInt(1));
+				comment.setParent(rs.getInt(2));
+				comment.setComment(rs.getInt(3));
+				comment.setType(rs.getString(4));
+				comment.setTitle(rs.getString(5));
+				comment.setContent(rs.getString(6));
+				comment.setFile(rs.getInt(7));
+				comment.setHit(rs.getInt(8));
+				comment.setUid(rs.getString(9));
+				comment.setRegip(rs.getString(10));
+				comment.setRdate(rs.getString(11).substring(2, 10));
+				comment.setNick(rs.getString(12));
+					
+				comments.add(comment);
+			}
+			
+			conn.close();
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return comments;
+	}
+	
+	public ArticleVo selectComment(int no) {
+	
+		ArticleVo comment = new ArticleVo();
+		
+		try {
+			Connection conn = DBConfig.getInstance().getConnection();
+			PreparedStatement psmt = conn.prepareStatement(Sql.SELECT_COMMENT);
+			psmt.setInt(1, no);
+			
+			ResultSet rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				comment.setNo(rs.getInt(1));
+				comment.setParent(rs.getInt(2));
+				comment.setComment(rs.getInt(3));
+				comment.setType(rs.getString(4));
+				comment.setTitle(rs.getString(5));
+				comment.setContent(rs.getString(6));
+				comment.setFile(rs.getInt(7));
+				comment.setHit(rs.getInt(8));
+				comment.setUid(rs.getString(9));
+				comment.setRegip(rs.getString(10));
+				comment.setRdate(rs.getString(11).substring(2, 10));
+				comment.setNick(rs.getString(12));
+			}
+			conn.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return comment;
+	}
+
 	public void updateArticle() {}
 	public void deleteArticle() {}
 	
