@@ -49,7 +49,9 @@ public class ArticleVo {
 	public void setNo(int no) {
 		this.no = no;
 	}
-	
+	public void setNo(String no) {
+		this.no = Integer.parseInt(no);
+	}
 	public int getParent() {
 		return parent;
 	}

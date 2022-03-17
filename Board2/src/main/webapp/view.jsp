@@ -38,8 +38,8 @@
                 </tr>
             </table>
             <div>
-                <a href="#" class="btnDelete">삭제</a>
-                <a href="/Board2/modify.do" class="btnModify">수정</a>
+                <a href="/Board2/delete.do?no=${article.no}" class="btnDelete">삭제</a>
+                <a href="/Board2/modify.do?no=${article.no}" class="btnModify">수정</a>
                 <a href="/Board2/list.do" class="btnList">목록</a>
             </div>  
             

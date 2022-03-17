@@ -4,23 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <title>글수정</title>
-    <link rel="stylesheet" href="./css/style.css"/>
+    <link rel="stylesheet" href="/Board2/css/style.css"/>
 </head>
 <body>
     <div id="wrapper">
         <section id="board" class="modify">
             <h3>글수정</h3>
             <article>
-                <form action="#">
+                <form action="/Board2/modify.do" method="post">
+                <input type="hidden" name="no" value="${article.no}"/>
                     <table>
                         <tr>
                             <td>제목</td>
-                            <td><input type="text" name="title" placeholder="제목을 입력하세요."/></td>
+                            <td><input type="text" name="title" value="${article.title}"/></td>
                         </tr>
                         <tr>
                             <td>내용</td>
                             <td>
-                                <textarea name="content"></textarea>                                
+                                <textarea name="content">${article.content}</textarea>                                
                             </td>
                         </tr>
                         <tr>
@@ -29,7 +30,7 @@
                         </tr>
                     </table>
                     <div>
-                        <a href="./list.html" class="btnCancel">취소</a>
+                        <a href="/Board2/view.do?no=${article.no}" class="btnCancel">취소</a>
                         <input type="submit"  class="btnWrite" value="수정완료">
                     </div>
                 </form>
