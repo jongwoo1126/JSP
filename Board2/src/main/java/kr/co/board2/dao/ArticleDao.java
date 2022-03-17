@@ -278,7 +278,90 @@ public class ArticleDao {
 		return comment;
 	}
 
+	public FileVo selectFile(String fid) {
+		
+		FileVo fvo = new FileVo();
+		
+		try {
+			Connection conn = DBConfig.getInstance().getConnection();
+			PreparedStatement psmt = conn.prepareStatement(Sql.SELECT_FILE);
+			psmt.setString(1, fid);
+			
+			ResultSet rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				
+				fvo.setFid(rs.getInt(1));
+				fvo.setParent(rs.getInt(2));
+				fvo.setoName(rs.getString(3));
+				fvo.setnName(rs.getString(4));
+				fvo.setDownload(rs.getInt(5));
+				fvo.setRdate(rs.getString(5));
+			}
+			conn.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return fvo;
+	}
+	
+	public void updateFileCount(String fid) {
+		try {
+			Connection conn = DBConfig.getInstance().getConnection();
+			PreparedStatement psmt = conn.prepareStatement(Sql.UPDATE_FILE_COUNT);
+			psmt.setString(1, fid);
+			psmt.executeUpdate();
+			conn.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void updateArticle() {}
-	public void deleteArticle() {}
+	public int updateComment(String content, String no) {
+		
+		int result = 0;
+		
+		try {
+			Connection conn = DBConfig.getInstance().getConnection();
+			PreparedStatement psmt = conn.prepareStatement(Sql.UPDATE_COMMENT);
+			psmt.setString(1, content);
+			psmt.setString(2, no);
+			result = psmt.executeUpdate();
+			
+			conn.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+		
+	}
+	public void deleteArticle() {
+		try {
+			Connection conn = DBConfig.getInstance().getConnection();
+			PreparedStatement psmt = conn.prepareStatement(null);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public int deleteComment(String no) {
+		
+		int result = 0;
+		
+		try {
+			Connection conn = DBConfig.getInstance().getConnection();
+			PreparedStatement psmt = conn.prepareStatement(Sql.DELETE_COMMENT);
+			psmt.setString(1, no);
+			result = psmt.executeUpdate();
+			
+			conn.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 	
 }

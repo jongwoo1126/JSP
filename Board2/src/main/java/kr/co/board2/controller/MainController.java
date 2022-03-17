@@ -1,8 +1,12 @@
 package kr.co.board2.controller;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -15,7 +19,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 
 public class MainController extends HttpServlet{
 
@@ -98,9 +101,47 @@ public class MainController extends HttpServlet{
 		
 		}else if(result.startsWith("json:")){
 			// json 출력
+			resp.setContentType("application/json;charset=UTF-8");
+			resp.setCharacterEncoding("utf-8");
+			
 			PrintWriter out = resp.getWriter();
 			out.print(result.substring(5));
 		
+		}else if(result.startsWith("file:")) {
+			// 파일전송(파일 다운로드)
+			
+			String oName = (String) req.getAttribute("oName");
+			String nName = (String) req.getAttribute("nName");
+			
+			// 파일 다운로드 response 헤더수정	
+			resp.setContentType("application/octet-stream");
+			resp.setHeader("Content-Disposition", "attachment; filename="+URLEncoder.encode(oName, "utf-8"));
+			resp.setHeader("Content-Transfer-Encoding", "binary");
+			resp.setHeader("Pragma", "no-cache");
+			resp.setHeader("Cache-Control", "private");
+			
+			// response 객체 스트림 작업
+			String filepath = req.getServletContext().getRealPath("/file");
+			
+			File file = new File(filepath+"/"+nName);
+			
+			BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file));
+			BufferedOutputStream bos = new BufferedOutputStream(resp.getOutputStream());
+			
+			while(true){
+				int data = bis.read();
+				
+				if(data == -1){
+					break;			
+				}
+				
+				bos.write(data);
+			}
+			
+			bos.close();
+			bis.close();
+
+			
 		}else {
 		
 			// view 포워드

@@ -7,6 +7,9 @@
     <title>글보기</title>
     <link rel="stylesheet" href="/Board2/css/style.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="/Board2/js/commentDelete.js"></script>
+    <script src="/Board2/js/commentWrite.js"></script>
+    <script src="/Board2/js/commentModify.js"></script>
 </head>
 <body>
     <div id="wrapper">
@@ -21,7 +24,7 @@
                 	<tr>
 	                    <td>첨부파일</td>
 	                    <td>
-	                        <a href="#">${article.fv.oName}</a>
+	                        <a href="/Board2/fileDownload.do?fid=${article.fv.fid}">${article.fv.oName}</a>
 	                        <span>${article.fv.download}회 다운로드</span>
 	                    </td>
                 	</tr>
@@ -51,68 +54,15 @@
 	                    </span>
 	                    <textarea name="comment" readonly>${comment.content}</textarea>
 	                    <div>
-	                        <a href="#">삭제</a>
-	                        <a href="#">수정</a>
+	                        <a href="#" class="del" data-no="${comment.no}">삭제</a>
+	                        <a href="#" class="modify" data-no="${comment.no}" data-mode="r">수정</a>
 	                    </div>
 	                </article>
 	            </c:forEach>
 	            <c:if test="${comments.size() == 0}">
 	            	<p class="empty">등록된 댓글이 없습니다.</p>
-	            </c:if>     
-	            
-	            <script>
-            
-		            $(function() {
-						
-		            	$('.commentForm > form').submit(function() {
-							
-		            		let parent  = $(this).children('input[name=parent]').val();
-		            		let uid	    = $(this).children('input[name=uid]').val();
-		            		let content = $(this).children('textarea[name=content]').val();
-		            		
-		            		let jsonData = {"parent":parent, "uid":uid, "content": content };
-		            		
-		            		$.ajax({
-		            			url:'/Board2/comment.do',
-		            			type:'post',
-		            			data:jsonData,
-		            			dataType:'json',
-		            			success: function(data) {
-									
-		            				console.log(data);
-		            				// 화면 랜더링
-	            					let tags = `<article class='comment'>
-						        	                <span>
-						    	                        <span>닉네임</span>
-						    	                        <span>22-03-16</span>
-						    	                    </span>
-						    	                    <textarea name='comment' readonly>댓글내용</textarea>
-						    	                    <div>
-						    	                        <a href='#'>삭제</a>
-						    	                        <a href='#'>수정</a>
-						    	                    </div>
-						    	                </article>`;
-						    	                
-									let dom = $(tags);
-									dom.find('.comment > span > span:nth-chile(1)').text(data.nick);
-									dom.find('.comment > span > span:nth-chile(2)').text(data.rdate);
-									dom.find('.comment > textarea').text(data.content);
-									
-	            					$('.commentList').append(dom);
-		            					
-		            			
-		            				
-								}
-		            		});
-		            		return false;
-						});
-		            	
-					});
-            
-            	</script>    
-                
-                
-            </section>
+	            </c:if>
+	        </section>     
 
             <!-- 댓글입력폼 -->
             <section class="commentForm">
