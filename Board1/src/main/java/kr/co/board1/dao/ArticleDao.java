@@ -85,8 +85,6 @@ public class ArticleDao {
 		}
 	}
 	
-	
-	
 	public int selectMaxId() {
 		
 		int no = 0;

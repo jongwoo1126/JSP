@@ -84,7 +84,7 @@
 				let textarea = tag.parent().prev();
      			
      			let content = textarea.val();
-     			let no = tag.attr('data-id');
+     			let no = tag.attr('data-no');
      			
      			let jsonData = {"content": content, "no": no};
      			
@@ -162,7 +162,7 @@
                     <div>
                         <a class="commentDelete" href="/Board1/proc/deleteComment.jsp?no=<%= comment.getNo() %> &parent=<%= comment.getParent() %>">삭제</a>
                         <a href="#" class="commentModify">수정</a>
-                        <a href="#" data-id="<%= comment.getNo() %>" class="commentModifyComplete">수정완료</a>
+                        <a href="#" data-no="<%= comment.getNo() %>" class="commentModifyComplete">수정완료</a>
                     </div>
                     <% } %>
                 </article>
