@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../_header.jsp" %>
-<script src="../js/validation.js"></script>
+<script src="/Farmstory2/js/validation.js"></script>
         <section id="user" class="register">
             <form action="/Farmstory2/user/register.do" method="POST">
                 <table border="1">

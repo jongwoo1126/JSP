@@ -3,7 +3,7 @@
  */
 // Validation 수행(유효성 검증)
 // 데이터 형식을 검사하기 위한 정규표현식(Regular Expression)
-let reUid = /^[a-z]+[a-z0-9]{3,9}$/g;
+let reUid = /^[a-z]+[a-z0-9]{3,9}$/;
 let rePass= /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{5,}$/;
 let reName = /^[가-힣]{2,10}$/;
 let reNick = /^[a-z가-힣0-9]{2,5}$/;
@@ -20,11 +20,11 @@ let isHpOk 		= false;
 $(function() {
 	
 	// 아이디 중복체크
-	$('input[name=uid]').keyup(function() {
+	$('input[name=uid]').focusout(function() {
 		
 		let value = $(this).val();
 		
-		console.log(value);
+		//console.log(value);
 		
 		if(value.length > 3){
 
@@ -63,7 +63,7 @@ $(function() {
 	
 	
 	// 비밀번호 유효성 검사
-	$('input[name=pass2]').keyup(function() {
+	$('input[name=pass2]').focusout(function() {
 		let pw1 = $('input[name=pass1]').val();
 		let pw2 = $('input[name=pass2]').val();
 		
@@ -85,7 +85,7 @@ $(function() {
 	});
 	
 	// 이름 유효성 검사
-	$('input[name=name]').keyup(function() {
+	$('input[name=name]').focusout(function() {
 		
 		let name = $(this).val();
 		
@@ -99,7 +99,7 @@ $(function() {
 	});
 	
 	// 닉네임 중복체크
-	$('input[name=nick]').keyup(function() {
+	$('input[name=nick]').focusout(function() {
 		
 		let nick = $(this).val();
 		let jsonData = {"nick":nick}
@@ -123,7 +123,7 @@ $(function() {
 	});
 	
 	// 이메일 중복체크
-	$('input[name=email]').keyup(function() {
+	$('input[name=email]').focusout(function() {
 		
 		let email = $(this).val();
 		let jsonData = {"email":email}
@@ -140,7 +140,7 @@ $(function() {
 	});
 	
 	// 휴대폰 중복체크
-	$('input[name=hp]').keyup(function() {
+	$('input[name=hp]').focusout(function() {
 		
 		let hp = $(this).val();
 		let jsonData = {"hp":hp}
