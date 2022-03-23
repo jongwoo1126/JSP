@@ -61,6 +61,22 @@ public class ArticleDao {
 		}
 	}
 	
+	public int insertComment(ArticleVo vo) {
+		try {
+			Connection conn = DBConfig.getInstance().getConnection();
+			PreparedStatement psmt = conn.prepareStatement(Sql.INSERT_COMMENT);
+			psmt.setInt(1, vo.getParent());
+			psmt.setString(2, vo.getContent());
+			psmt.setString(3, vo.getUid());
+			psmt.setString(4, vo.getRegip());
+			psmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return selectMaxNo();
+	}
+	
 	public ArticleVo selectArticle(String no) {
 		
 		ArticleVo article = null;
@@ -93,6 +109,39 @@ public class ArticleDao {
 		}
 		return article;
 	};
+	
+	public ArticleVo selectComment(int no) {
+		
+		ArticleVo comment = new ArticleVo();
+		
+		try {
+			Connection conn = DBConfig.getInstance().getConnection();
+			PreparedStatement psmt = conn.prepareStatement(Sql.SELECT_COMMENT);
+			psmt.setInt(1, no);
+			
+			ResultSet rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				comment.setNo(rs.getInt(1));
+				comment.setParent(rs.getInt(2));
+				comment.setComment(rs.getInt(3));
+				comment.setType(rs.getString(4));
+				comment.setTitle(rs.getString(5));
+				comment.setContent(rs.getString(6));
+				comment.setFile(rs.getInt(7));
+				comment.setHit(rs.getInt(8));
+				comment.setUid(rs.getString(9));
+				comment.setRegip(rs.getString(10));
+				comment.setRdate(rs.getString(11));
+				comment.setNick(rs.getString(12));
+			}
+			conn.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return comment;
+	}
 	
 	public List<ArticleVo> selectComments(String parent){
 		
@@ -237,8 +286,28 @@ public class ArticleDao {
 		}
 		return articles;
 	}
+	
 	public void updateArticle() {}
-
+	
+	public int updateComment(String content, String no) {
+		
+		int result = 0;
+		
+		try {
+			Connection conn = DBConfig.getInstance().getConnection();
+			PreparedStatement psmt = conn.prepareStatement(Sql.UPDATE_COMMENT);
+			psmt.setString(1, content);
+			psmt.setString(2, no);
+			result = psmt.executeUpdate();
+			
+			conn.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
 	public void updateFileCount(String fid) {
 		try {
 			Connection conn = DBConfig.getInstance().getConnection();
@@ -254,4 +323,20 @@ public class ArticleDao {
 	
 	public void deleteArticle() {}
 	
+	public int deleteComment(String no) {
+		
+		int result = 0;
+		
+		try {
+			Connection conn = DBConfig.getInstance().getConnection();
+			PreparedStatement psmt = conn.prepareStatement(Sql.DELETE_COMMENT);
+			psmt.setString(1, no);
+			result = psmt.executeUpdate();
+			conn.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 }

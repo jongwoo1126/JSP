@@ -41,6 +41,10 @@ public class Sql {
 												+ "ORDER BY `no` DESC "
 												+"LIMIT ?, 10";
 	
+	public static final String SELECT_COMMENT  = "SELECT a.*, b.nick FROM `Board_article` AS a "
+												+ "JOIN `Board_user` AS b ON a.uid = b.uid "
+												+ "WHERE `no`=?";
+	
 	public static final String SELECT_COMMENTS = "SELECT a.*, b.nick FROM `Board_article` AS a "
 												+ "JOIN `Board_user` AS b on a.uid = b. uid "
 												+ "WHERE `parent`=? ORDER BY `no` ASC";
@@ -84,13 +88,13 @@ public class Sql {
 	
 	public static final String UPDATE_ARTICLE="UPDATE `Board_article` SET `title`=?, `content`=? WHERE `no`=?"; 
 	
-	public static final String UPDATE_COMMENT= "UPDATE `Board_article` SET `content`=? WHERE `id`=?"; 
+	public static final String UPDATE_COMMENT= "UPDATE `Board_article` SET `content`=? WHERE `no`=?"; 
 	
-	public static final String DELETE_COMMENT = "DELETE FROM `Board_article` WHERE `id`=?";
+	public static final String DELETE_COMMENT = "DELETE FROM `Board_article` WHERE `no`=?";
 	
 	public static final String DELETE_ARTICLE  = "DELETE a, b FROM `Board_article` AS a "
 												+ "LEFT JOIN `Board_file` AS b "
-												+ "ON a.id=b.parent "
-												+ "WHERE `id`=?";
+												+ "ON a.no=b.parent "
+												+ "WHERE `no`=?";
 	
 }
