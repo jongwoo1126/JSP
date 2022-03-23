@@ -1,30 +1,34 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../_header.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:include page="./inc/_${cate}.jsp"/>
         <section id="board" class="view">
             <h3>글보기</h3>
             <table>
                 <tr>
                     <td>제목</td>
-                    <td><input type="text" name="title" value="제목입니다." readonly/></td>
+                    <td><input type="text" name="title" value="${article.title}" readonly/></td>
                 </tr>
-                <tr>
-                    <td>첨부파일</td>
-                    <td>
-                        <a href="#">2020년 상반기 매출자료.xls</a>
-                        <span>7회 다운로드</span>
-                    </td>
-                </tr>
+                <c:if test="${article.file > 0}">
+	                <tr>
+	                    <td>첨부파일</td>
+	                    <td>
+	                        <a href="Farmstory2/board/fileDownload.do?fid=${article.fv.fid}">${article.fv.oName}</a>
+	                        <span>${article.fv.download}회 다운로드</span>
+	                    </td>
+	                </tr>
+	            </c:if>
                 <tr>
                     <td>내용</td>
                     <td>
-                        <textarea name="content" readonly>내용 샘플입니다.</textarea>
+                        <textarea name="content" readonly>${article.content}</textarea>
                     </td>
                 </tr>
             </table>
             <div>
                 <a href="#" class="btnDelete">삭제</a>
                 <a href="/Farmstory2/board/modify.do" class="btnModify">수정</a>
-                <a href="/Farmstory2/board/list.do" class="btnList">목록</a>
+                <a href="/Farmstory2/board/list.do?cate=${cate}&type=${type} class="btnList">목록</a>
             </div>  
             
             <!-- 댓글리스트 -->
@@ -59,4 +63,8 @@
             </section>
 
         </section>
+<!-- 내용끝 -->
+        </article>
+        </section>
+        </div>
 <%@ include file="../_footer.jsp" %>
