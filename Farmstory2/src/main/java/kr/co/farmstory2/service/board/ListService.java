@@ -29,6 +29,7 @@ public class ListService implements CommonService{
 		
 		req.setAttribute("cate", cate);
 		req.setAttribute("type", type);
+		req.setAttribute("pg", pg);
 		req.setAttribute("articles", articles);
 		req.setAttribute("currentPage", currentPage);
 		req.setAttribute("lastPageNum", lastPageNum);

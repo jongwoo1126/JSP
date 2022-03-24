@@ -25,6 +25,7 @@ public class ViewService implements CommonService{
 		String cate = req.getParameter("cate");
 		String type = req.getParameter("type");
 		String no = req.getParameter("no");
+		String pg = req.getParameter("pg");
 		
 		ArticleDao dao = ArticleDao.getInstance();
 		
@@ -35,6 +36,7 @@ public class ViewService implements CommonService{
 		req.setAttribute("comments", comments);
 		req.setAttribute("cate", cate);
 		req.setAttribute("type", type);
+		req.setAttribute("pg", pg);
 		
 		return "/board/view.jsp";
 		}
