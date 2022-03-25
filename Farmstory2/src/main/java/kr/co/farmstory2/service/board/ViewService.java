@@ -31,6 +31,7 @@ public class ViewService implements CommonService{
 			
 			ArticleVo article = dao.selectArticle(no);
 			List<ArticleVo> comments = dao.selectComments(no);
+			dao.updateArticleHit(no);
 			
 			req.setAttribute("article", article);
 			req.setAttribute("comments", comments);

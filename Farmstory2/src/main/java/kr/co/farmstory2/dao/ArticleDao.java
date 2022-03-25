@@ -326,6 +326,20 @@ public class ArticleDao {
 		
 	}
 	
+	public void updateArticleHit(String no) {
+		try {
+			Connection conn = DBConfig.getInstance().getConnection();
+			PreparedStatement psmt = conn.prepareStatement(Sql.UPDATE_ARTICLE_HIT);
+			psmt.setString(1, no);
+			psmt.executeUpdate();
+			
+			conn.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
 	public int updateComment(String content, String no) {
 		
 		int result = 0;

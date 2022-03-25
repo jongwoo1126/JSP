@@ -20,45 +20,45 @@
             </div>
 
             <div class="quick">
-                <a href="/Farmstory2/board/list.do?cate=community&type=menu"><img src="./img/main_banner_sub1_tit.png" alt="오늘의 식단"></a>
-                <a href="/Farmstory2/board/list.do?cate=community&type=chef"><img src="./img/main_banner_sub2_tit.png" alt="나도 요리사"></a>                
+                <a href="/Farmstory2/board/list.do?cate=community&type=menu&pg=1"><img src="./img/main_banner_sub1_tit.png" alt="오늘의 식단"></a>
+                <a href="/Farmstory2/board/list.do?cate=community&type=chef&pg=1"><img src="./img/main_banner_sub2_tit.png" alt="나도 요리사"></a>                
             </div>
 
             <div class="latest">
                 <div>
-                    <a href="/Farmstory2/board/list.do?cate=croptalk&type=grow"><img src="./img/main_latest1_tit.png" alt="텃밭 가꾸기"/></a>
+                    <a href="/Farmstory2/board/list.do?cate=croptalk&type=grow&pg=1"><img src="./img/main_latest1_tit.png" alt="텃밭 가꾸기"/></a>
                     <img src="./img/main_latest1_img.jpg" alt="이미지"/>
                     <table border="0">
  						<c:forEach var="article" items="${latests1}">
 							<tr>
                         	    <td>></td>
-                            	<td><a href="/Farmstory2/board/view.do?cate=croptalk&type=${article.type}&no=${article.no}">${article.title}</a></td>
+                            	<td><a href="/Farmstory2/board/view.do?cate=croptalk&type=${article.type}&no=${article.no}&pg=1">${article.title}</a></td>
                             	<td>${article.rdate}</td>
                         	</tr> 						
  						</c:forEach>
                     </table>
                 </div>
                 <div>
-                    <a href="/Farmstory2/board/list.do?cate=croptalk&type=school"><img src="./img/main_latest2_tit.png" alt="귀농학교"/></a>
+                    <a href="/Farmstory2/board/list.do?cate=croptalk&type=school&pg=1"><img src="./img/main_latest2_tit.png" alt="귀농학교"/></a>
                     <img src="./img/main_latest2_img.jpg" alt="이미지"/>
                     <table border="0">
                         <c:forEach var="article" items="${latests2}">
 							<tr>
                         	    <td>></td>
-                            	<td><a href="/Farmstory2/board/view.do?cate=croptalk&type=${article.type}&no=${article.no}">${article.title}</a></td>
+                            	<td><a href="/Farmstory2/board/view.do?cate=croptalk&type=${article.type}&no=${article.no}&pg=1">${article.title}</a></td>
                             	<td>${article.rdate}</td>
                         	</tr> 						
  						</c:forEach>
                     </table>
                 </div>
                 <div>
-                    <a href="/Farmstory2/board/list.do?cate=croptalk&type=story"><img src="./img/main_latest3_tit.png" alt="농작물 이야기"/></a>
+                    <a href="/Farmstory2/board/list.do?cate=croptalk&type=story&pg=1"><img src="./img/main_latest3_tit.png" alt="농작물 이야기"/></a>
                     <img src="./img/main_latest3_img.jpg" alt="이미지"/>
                     <table border="0">
                         <c:forEach var="article" items="${latests3}">
 							<tr>
                         	    <td>></td>
-                            	<td><a href="/Farmstory2/board/view.do?cate=croptalk&type=${article.type}&no=${article.no}">${article.title}</a></td>
+                            	<td><a href="/Farmstory2/board/view.do?cate=croptalk&type=${article.type}&no=${article.no}&pg=1">${article.title}</a></td>
                             	<td>${article.rdate}</td>
                         	</tr> 						
  						</c:forEach>
@@ -76,8 +76,8 @@
 						<img src="./img/main_sub2_cs_txt.png" alt="1666-777"/>						
 					</div>
 					<div>
-						<a href="/Farmstory2/board/list.do?cate=community&type=qna"><img src="./img/main_sub2_cs_bt1.png" alt="1:1고객문의"/></a>
-						<a href="/Farmstory2/board/list.do?cate=community&type=faq"><img src="./img/main_sub2_cs_bt2.png" alt="자주묻는질문"/></a>
+						<a href="/Farmstory2/board/list.do?cate=community&type=qna&pg=1"><img src="./img/main_sub2_cs_bt1.png" alt="1:1고객문의"/></a>
+						<a href="/Farmstory2/board/list.do?cate=community&type=faq&pg=1"><img src="./img/main_sub2_cs_bt2.png" alt="자주묻는질문"/></a>
 						<a href="#"><img src="./img/main_sub2_cs_bt3.png" alt=""/></a>
 					</div>				
 
