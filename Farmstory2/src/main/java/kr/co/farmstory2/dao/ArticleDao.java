@@ -311,7 +311,20 @@ public class ArticleDao {
 		return articles;
 	}
 	
-	public void updateArticle() {}
+	public void updateArticle(String title, String content, String no) {
+		try {
+			Connection conn = DBConfig.getInstance().getConnection();
+			PreparedStatement psmt = conn.prepareStatement(Sql.UPDATE_ARTICLE);
+			psmt.setString(1, title);
+			psmt.setString(2, content);
+			psmt.setString(3, no);
+			psmt.executeUpdate();
+			conn.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
 	
 	public int updateComment(String content, String no) {
 		
@@ -345,7 +358,19 @@ public class ArticleDao {
 		}
 	}
 	
-	public void deleteArticle() {}
+	public void deleteArticle(String no) {
+		try {
+			Connection conn = DBConfig.getInstance().getConnection();
+			PreparedStatement psmt = conn.prepareStatement(Sql.DELETE_ARTICLE);
+			psmt.setString(1, no);
+			psmt.executeUpdate();
+			
+			conn.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
 	
 	public int deleteComment(String no) {
 		

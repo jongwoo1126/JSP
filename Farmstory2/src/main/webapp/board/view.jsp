@@ -33,8 +33,8 @@
         </tr>
     </table>
     <div>
-        <a href="#" class="btnDelete">삭제</a>
-        <a href="/Farmstory2/board/modify.do" class="btnModify">수정</a>
+        <a href="/Farmstory2/board/delete.do?cate=${cate}&type=${type}&no=${no}&pg=${pg}" class="btnDelete">삭제</a>
+        <a href="/Farmstory2/board/modify.do?cate=${cate}&type=${type}&no=${no}&pg=${pg}" class="btnModify">수정</a>
         <a href="/Farmstory2/board/list.do?cate=${cate}&type=${type}&pg=${pg}" class="btnList">목록</a>
     </div>  
     

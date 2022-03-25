@@ -22,23 +22,24 @@ public class ViewService implements CommonService{
 		if(userVo == null) {
 			return "redirect:/Farmstory2/user/login.do?success=103";
 		}else {
-		String cate = req.getParameter("cate");
-		String type = req.getParameter("type");
-		String no = req.getParameter("no");
-		String pg = req.getParameter("pg");
+			String cate = req.getParameter("cate");
+			String type = req.getParameter("type");
+			String no = req.getParameter("no");
+			String pg = req.getParameter("pg");
+			
+			ArticleDao dao = ArticleDao.getInstance();
+			
+			ArticleVo article = dao.selectArticle(no);
+			List<ArticleVo> comments = dao.selectComments(no);
+			
+			req.setAttribute("article", article);
+			req.setAttribute("comments", comments);
+			req.setAttribute("cate", cate);
+			req.setAttribute("type", type);
+			req.setAttribute("pg", pg);
+			req.setAttribute("no", no);
 		
-		ArticleDao dao = ArticleDao.getInstance();
-		
-		ArticleVo article = dao.selectArticle(no);
-		List<ArticleVo> comments = dao.selectComments(no);
-		
-		req.setAttribute("article", article);
-		req.setAttribute("comments", comments);
-		req.setAttribute("cate", cate);
-		req.setAttribute("type", type);
-		req.setAttribute("pg", pg);
-		
-		return "/board/view.jsp";
+			return "/board/view.jsp";
 		}
 	}
 
