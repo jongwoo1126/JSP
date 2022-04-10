@@ -5,11 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import javax.naming.spi.DirStateFactory.Result;
 
 import kr.co.Farmstory1.bean.ArticleBean;
 import kr.co.Farmstory1.db.DBConfig;

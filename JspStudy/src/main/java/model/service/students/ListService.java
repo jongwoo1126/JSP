@@ -6,10 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.dao.MemberDao;
-import model.dao.UserDao;
 import model.service.CommonService;
 import vo.MemberVo;
-import vo.UserVo;
 
 public class ListService implements CommonService{
 

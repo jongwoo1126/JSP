@@ -5,8 +5,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.co.board2.controller.CommonService;
-import kr.co.board2.dao.UserDao;
-import kr.co.board2.vo.UserVo;
 
 public class LogoutService implements CommonService {
 

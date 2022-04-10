@@ -7,8 +7,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.naming.spi.DirStateFactory.Result;
-
 import kr.co.farmstory2.config.DBConfig;
 import kr.co.farmstory2.config.Sql;
 import kr.co.farmstory2.vo.ArticleVo;

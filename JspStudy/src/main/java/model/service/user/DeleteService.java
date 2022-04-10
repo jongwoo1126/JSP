@@ -5,7 +5,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.dao.UserDao;
 import model.service.CommonService;
-import vo.UserVo;
 
 public class DeleteService implements CommonService{
 

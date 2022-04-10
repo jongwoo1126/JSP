@@ -1,7 +1,5 @@
 package kr.co.board1.bean;
 
-import java.util.Set;
-
 public class ArticleBean {
 
 	private int no;

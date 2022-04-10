@@ -9,7 +9,6 @@ import java.util.List;
 
 import controller.DBConfig;
 import vo.MemberVo;
-import vo.UserVo;
 
 public class MemberDao {
 

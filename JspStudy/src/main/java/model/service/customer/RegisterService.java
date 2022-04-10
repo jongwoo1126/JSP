@@ -4,11 +4,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.dao.CustomerDao;
-import model.dao.MemberDao;
 
 import model.service.CommonService;
 import vo.CustomerVo;
-import vo.MemberVo;
 
 public class RegisterService implements CommonService{
 

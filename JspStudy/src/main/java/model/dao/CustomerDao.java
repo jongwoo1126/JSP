@@ -9,8 +9,6 @@ import java.util.List;
 
 import controller.DBConfig;
 import vo.CustomerVo;
-import vo.MemberVo;
-import vo.UserVo;
 
 public class CustomerDao {
 

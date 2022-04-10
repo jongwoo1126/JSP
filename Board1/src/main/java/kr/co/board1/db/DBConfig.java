@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import kr.co.board1.log.Mylog;
-
 public class DBConfig {
 	
 	// ΩÃ±€≈Ê ∞¥√º

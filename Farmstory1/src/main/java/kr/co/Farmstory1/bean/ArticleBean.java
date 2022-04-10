@@ -1,7 +1,5 @@
 package kr.co.Farmstory1.bean;
 
-import java.util.Set;
-
 public class ArticleBean {
 
 	private int no;

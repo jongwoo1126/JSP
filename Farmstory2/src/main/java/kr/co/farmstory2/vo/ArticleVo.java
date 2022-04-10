@@ -1,7 +1,5 @@
 package kr.co.farmstory2.vo;
 
-import java.util.Set;
-
 public class ArticleVo {
 
 	private int no;
