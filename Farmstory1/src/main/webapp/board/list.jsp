@@ -7,16 +7,38 @@
 	request.setCharacterEncoding("utf-8");
 	String cate = request.getParameter("cate");
 	String type = request.getParameter("type");
+	String pg = request.getParameter("pg");
 	
 	pageContext.include("./inc/_"+cate+".jsp");
-	
-	// 전체 게시판 글 갯수
+
 	ArticleDao dao = ArticleDao.getInstance();
 	
+	// 페이지 번호 작업
 	int total = dao.selectCountTotal(type);
-	int start = 0;
+	int lastPageNum = 0;
 	
+	if(total % 10 == 0){
+		lastPageNum = total / 10;
+	}else{
+		lastPageNum = total / 10 + 1;
+	}
+	
+	int currentPg = 1;
+	
+	if(pg != null){
+		currentPg = Integer.parseInt(pg);
+	}
+	
+	int start = (currentPg - 1) * 10;
 	int pageStartNum = total - start;
+	
+	int groupCurrent = (int)Math.ceil(currentPg / 10.0);
+	int groupStart = (groupCurrent -1) * 10 +1; 
+	int groupEnd = groupCurrent * 10;
+	
+	if(groupEnd > lastPageNum){
+		groupEnd = lastPageNum;
+	}
 	
 	// 글 가져오기
 	List<ArticleBean> articles = dao.selectArticles(type, start);
@@ -49,12 +71,18 @@
 
     <!-- 페이지 네비게이션 -->
     <div class="paging">
-        <a href="#" class="prev">이전</a>
-        <a href="#" class="num current">1</a>                
-        <a href="#" class="num">2</a>                
-        <a href="#" class="num">3</a>                
-        <a href="#" class="next">다음</a>
-    </div>
+   		<%if(groupStart > 1){ %>
+        	<a href="/Farmstory1/board/list.jsp?cate=<%= cate %>&type=<%= type %>&pg=<%= groupStart-1 %>" class="prev">이전</a>
+		<% } %>
+                
+		<% for(int p=groupStart ; p<=groupEnd ; p++){ %>     
+        	<a href="/Farmstory1/board/list.jsp?cate=<%= cate %>&type=<%= type %>&pg=<%= p %>" class="num <%= (currentPg == p) ? "current" : "" %>"><%= p %></a> 
+		<% } %>
+                
+        <%if(groupEnd < lastPageNum){ %>               
+        	<a href="/Farmstory1/board/list.jsp?cate=<%= cate %>&type=<%= type %>&pg=<%= groupEnd+1 %>" class="next">다음</a>
+        <% } %>
+	</div>
 
     <!-- 글쓰기 버튼 -->
     <a href="/Farmstory1/board/write.jsp?cate=<%= cate %>&type=<%= type %>" class="btnWrite">글쓰기</a>

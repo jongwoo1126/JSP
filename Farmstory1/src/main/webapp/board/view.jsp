@@ -76,7 +76,7 @@
             <section class="commentForm">
                 <h3>댓글쓰기</h3>
                 <form action="/Farmstory1/board/proc/comment.jsp" method="post">
-                	<input type="hidden" name="cate"  value="<%= cate %>"/>
+                	<input type="text" name="cate"  value="<%= cate %>"/>
                 	<input type="hidden" name="type" value="<%= type %>"/>
                 	<input type="hidden" name="no"  value="<%= no %>"/>
                 	<input type="hidden" name="uid" value="<%= sessUser.getUid() %>"/>
