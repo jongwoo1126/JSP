@@ -43,6 +43,7 @@
 	5. member
 	6. students
 
-### Board1
-게시판 프로젝트
-AWS 링크 : http://3.34.94.228:8080/Board1/
+### AWS 배포
+Board1 링크 : http://3.34.94.228:8080/Board1/
+Board2 링크 : http://3.34.94.228:8080/Board2/
+Farmstory2 링크 : http://3.34.94.228:8080/Farmstory2/
