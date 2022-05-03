@@ -44,6 +44,6 @@
 	6. students
 
 ### AWS 배포
-Board1 링크 : http://3.34.94.228:8080/Board1/
-Board2 링크 : http://3.34.94.228:8080/Board2/
-Farmstory2 링크 : http://3.34.94.228:8080/Farmstory2/
+1. Board1 링크 : http://3.34.94.228:8080/Board1/
+2. Board2 링크 : http://3.34.94.228:8080/Board2/
+3. Farmstory2 링크 : http://3.34.94.228:8080/Farmstory2/
